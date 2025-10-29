@@ -7,4 +7,4 @@
 * Bailey McKeithen : Graphics for coin and obstacles, code for game
 * Kirubashinilakshana Senthilnathan : code for game, graphics for screens (start, end, main screen, etc), logic for buttons 
 
-![Maze]()
+![Maze](https://github.com/codinghasini/GameDev-Group/blob/main/Maze.png)
