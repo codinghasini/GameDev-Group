@@ -7,7 +7,7 @@
 * Bailey McKeithen-Level & Mechanics Developer/Core sytems : Graphics for coin and obstacles, code for game
 * Kirubashinilakshana Senthilnathan-Lead Developer/Art & design: code for game, graphics for screens (start, end, main screen, etc), logic for buttons 
 
-![Maze](https://github.com/codinghasini/GameDev-Group/blob/main/Maze.png)
+![Maze](https://github.com/codinghasini/GameDev-Group/blob/main/Maze%20Mockup-1.png.png)
 
 [timeline](https://github.com/codinghasini/GameDev-Group/blob/main/Project%20Timeline.docx)
 
