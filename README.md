@@ -6,3 +6,5 @@
 * Adeline Wright  : Sound Logic, Graphics for character, code for game
 * Bailey McKeithen : Graphics for coin and obstacles, code for game
 * Kirubashinilakshana Senthilnathan : code for game, graphics for screens (start, end, main screen, etc), logic for buttons 
+
+![Maze]()
