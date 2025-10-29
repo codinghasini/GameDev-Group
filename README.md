@@ -8,4 +8,4 @@
 * Kirubashinilakshana Senthilnathan : code for game, graphics for screens (start, end, main screen, etc), logic for buttons 
 
 ![Maze](https://github.com/codinghasini/GameDev-Group/blob/main/Maze.png)
-[timeline] (https://github.com/codinghasini/GameDev-Group)
+![timeline] (https://github.com/codinghasini/GameDev-Group/blob/main/Project%20Timeline.docx)
