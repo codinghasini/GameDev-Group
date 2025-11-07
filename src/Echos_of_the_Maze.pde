@@ -28,7 +28,7 @@ void draw() {
  
   infoPanel();
 
-for (int i = coins.size() - 1; i >= 0; i++) {
+for (int i = coins.size() - 1; i >= 0; i--) {
     Coin c = coins.get(i);
     c.display();
     c.move();
