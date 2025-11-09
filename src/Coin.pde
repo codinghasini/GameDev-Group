@@ -8,12 +8,13 @@ PImage coin;
 // Member Methods
 
 Coin() {
-    x=int (random(width));
-    y=-100;
-    w=100;
-    speed =int(random(1, 5));
+   x = int(random(50, width - 50));
+    y = int(random(50, height - 100));
+    w=40;
    
       coin=loadImage("coin.png");
+      coin.resize(w, w);
+
     }
   
 
@@ -21,30 +22,14 @@ Coin() {
   void display() {
     //temporary until images
     imageMode(CENTER);
-    imageMode(CENTER);
-    coin.resize(100, 100);
     image(coin, x, y);
   }
 
-  void move() {
-    y=y+speed;
-  }
 
 
-  boolean reachedBottom() {
-    if (y>height+w/2) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 
   boolean intersect(Player s) {
-    float d= dist(x, y, s.x, s.y);
-    if (d<50) {
-      return true;
-    } else {
-      return false;
+    float d = dist(x, y, s.x, s.y);
+    return d < (w / 2 + 20);
     }
-  }
 }

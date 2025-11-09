@@ -1,12 +1,13 @@
 class Player {
 // Member Variables
-int x,y,w,laserCount, turretCount, health;
+int x,y,w,h,laserCount, turretCount, health;
 
 //Constructor
 Player(){
 x=width/2;
 y=height/2;
 w=100;
+h=100;
 health=100;
 laserCount=100;
 
