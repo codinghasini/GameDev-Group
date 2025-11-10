@@ -10,7 +10,7 @@ ArrayList<Wall> walls;
 
 
 void setup() {
-  size(800, 800);
+  size(1200, 700);
   background(20);
   
   level=1;
