@@ -9,7 +9,7 @@ y=height/2;
 w=100;
 h=100;
 health=100;
-laserCount=100;
+spearCount=100;
 
 }
 
@@ -30,7 +30,7 @@ this.y = y;
 }
 
 boolean fire(){
-if (laserCount>0){
+if (spearCount>0){
 return true;
 }else{
   return false;
