@@ -7,14 +7,14 @@ ArrayList<Ghost> ghosts;
 ArrayList<Coin> coins;
 ArrayList<Wall> walls;
 ArrayList<Spear> spears;
-
+SoundFile file;
 
 
 
 void setup() {
   size(800, 800);
   background(20);
-  
+  file = new SoundFile(this, "ding.mp3");
   level=1;
   score = 0;
   edgar = new Player();
@@ -144,7 +144,7 @@ for (int i = ghosts.size() - 1; i >= 0; i--) {
   //}
 
 void keyPressed() {
-  
+  file.play();
   //if (!edgarWillHitWall(key)){
   
     if (key == 'w') edgar.y -= 10;
