@@ -1,7 +1,7 @@
 class Player {
 // Member Variables
 int x,y,w,h,laserCount, turretCount, health;
-
+PImage character;
 //Constructor
 Player(){
 x=width/2;
@@ -10,7 +10,7 @@ w=100;
 h=100;
 health=100;
 spearCount=100;
-
+character = loadImage("character.png");
 }
 
 //Member Methods
