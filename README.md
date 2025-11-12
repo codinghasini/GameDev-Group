@@ -11,5 +11,5 @@
 
 [timeline](https://github.com/codinghasini/GameDev-Group/blob/main/Project%20Timeline.docx)
 
-[Chart]()
+[Chart](https://github.com/codinghasini/GameDev-Group/blob/main/Diagram.drawio.png)
 
