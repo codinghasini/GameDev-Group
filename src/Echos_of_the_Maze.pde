@@ -6,6 +6,7 @@ int ghostsHit = 0;
 ArrayList<Ghost> ghosts;
 ArrayList<Coin> coins;
 ArrayList<Wall> walls;
+ArrayList<Spear> spears;
 
 
 
@@ -21,6 +22,7 @@ void setup() {
   ghosts = new ArrayList<Ghost>();
   coins = new ArrayList<Coin>();
   walls = new ArrayList<Wall>();
+spears= new ArrayList <Spear>();
   
   for (int i = 0; i < 5; i++) {
     coins.add(new Coin());
