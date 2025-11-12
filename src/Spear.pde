@@ -15,33 +15,3 @@ class Spear {
    
     }
     
-  
-
-
-
-  //Member Methods
-  void display() {
-  }
-   
-
-  void move() {
-    y=y-speed;
-  }
-
-
-  boolean reachedTop() {
-    if (y<0-10) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-  boolean intersect(Ghost r) {
-    float d= dist(x, y, r.x, r.y);
-    if (d<30) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-}
