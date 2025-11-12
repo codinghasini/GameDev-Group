@@ -10,7 +10,7 @@ w=100;
 h=100;
 health=100;
 spearCount=100;
-character = loadImage("character.png");
+character = loadImage("character1.png");
 }
 
 //Member Methods
