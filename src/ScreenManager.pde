@@ -2,16 +2,11 @@
 // GLOBALS
 // -------------------------------------------
 char screen = 'S';   // S = start, M = menu, T = settings, P = play, U = pause, G = game over, A = app stats
-Button btnStart, btnMenu, btnSettings, btnBack;
-
-// -------------------------------------------
-
-// -------------------------------------------
+Button btnStart, btnMenu, btnBack;
 
 
-// -------------------------------------------
 // MOUSE CLICK HANDLER
-// -------------------------------------------
+
 void mousePressed() {
 
   switch(screen) {
@@ -22,7 +17,7 @@ void mousePressed() {
 
     case 'M':  // Menu screen
       if (btnMenu.clicked()) screen = 'P';
-      if (btnSettings.clicked()) screen = 'T';
+     
       break;
 
     case 'T':  // Settings screen
@@ -52,7 +47,6 @@ void drawMenu() {
   text("MENU SCREEN", width / 2, 50);
 
   btnMenu.display();
-  btnSettings.display();
 }
 
 void drawSettings() {
