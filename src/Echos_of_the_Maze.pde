@@ -14,7 +14,7 @@ void setup() {
   size(800, 800); 
   background(20);
 
- 
+ //Bailey
   btnStart    = new Button("Play!", 220, 150, 160, 50);
   btnMenu     = new Button("Play Game", 220, 150, 160, 50);
   btnSettings = new Button("Settings", 220, 220, 160, 50);
@@ -47,7 +47,7 @@ void setup() {
 void draw() {
   background(20);
   switch(screen) {
-
+//bailey
     case 'S': // Start screen
       startScreen();
       btnStart.display();
