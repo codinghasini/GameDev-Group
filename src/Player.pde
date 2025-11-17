@@ -15,12 +15,8 @@ character = loadImage("character1.png");
 
 //Member Methods
 void display(){
-  rectMode(CENTER);
-// Body
-  fill(0, 100, 100);
-  stroke(0,0,150);
-  strokeWeight(3);
-  rect(x, y + 40, 30, 80);
+  imageMode (CENTER);
+ image(character,x,y);
  
 }
 
