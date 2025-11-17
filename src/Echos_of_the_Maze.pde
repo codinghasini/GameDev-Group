@@ -2,6 +2,7 @@
 Player edgar;
 char screen = 's';
 //game over, a = app stats
+//Kirubashinilakshana Bailey
 Button btnStart, btnMenu, btnSettings, btnBack;
 int level;
 int score;
@@ -23,7 +24,8 @@ void setup() {
   level=1;
   score = 0;
   edgar = new Player();
-  btnStart = new Button("Start",390, 315, 395, 140);
+  //Kirubashinilakshana Bailey
+btnStart = new Button("Start",390, 315, 395, 140);
 
   ghosts = new ArrayList<Ghost>();
   coins = new ArrayList<Coin>();
