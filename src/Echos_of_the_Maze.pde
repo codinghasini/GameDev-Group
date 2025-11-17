@@ -17,7 +17,6 @@ void setup() {
  //Bailey
   btnStart    = new Button("Play!", 220, 150, 160, 50);
   btnMenu     = new Button("Play Game", 220, 150, 160, 50);
-  btnSettings = new Button("Settings", 220, 220, 160, 50);
   btnBack     = new Button("Back", 20, 20, 100, 40);
 
   
@@ -56,7 +55,6 @@ void draw() {
     case 'M': // Menu screen
       drawMenu();
       btnMenu.display();
-      btnSettings.display();
       break;
 
     case 'T': // Settings screen
@@ -125,7 +123,18 @@ void keyPressed() {
     if (key == 'a') edgar.x -= 10;
   
     if (key == 'd') edgar.x += 10;
+
+  if (keyCode == UP) {
+   edgar.y-=10;
+     
+  } else if (keyCode == DOWN) {
+    edgar.y+=10;
+  } else if (keyCode == LEFT) {
+    edgar.x-=10;
+  } else if (keyCode == RIGHT) {
+    edgar.x+=10;
   }
+}
 
 
 
