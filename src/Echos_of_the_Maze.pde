@@ -11,36 +11,61 @@ ArrayList<Spear> spears;
 
 
 void setup() {
-  size(800, 800);
+  size(800, 800); 
   background(20);
-  level=1;
+
+ 
+  btnStart    = new Button("Play!", 220, 150, 160, 50);
+  btnMenu     = new Button("Play Game", 220, 150, 160, 50);
+  btnSettings = new Button("Settings", 220, 220, 160, 50);
+  btnBack     = new Button("Back", 20, 20, 100, 40);
+
+  
+  level = 1;
   score = 0;
   edgar = new Player();
   
   ghosts = new ArrayList<Ghost>();
   coins = new ArrayList<Coin>();
   walls = new ArrayList<Wall>();
-spears= new ArrayList <Spear>();
+  spears = new ArrayList<Spear>();
   
-  for (int i = 0; i < 5; i++) {
-    coins.add(new Coin());
-  }
-  for (int i = 0; i < 3; i++) {
-  ghosts.add(new Ghost());
+  for (int i = 0; i < 5; i++) coins.add(new Coin());
+  for (int i = 0; i < 3; i++) ghosts.add(new Ghost());
+
+  walls.add(new Wall(100, 100, 600, 20));
+  walls.add(new Wall(100, 200, 20, 400));
+  walls.add(new Wall(680, 200, 20, 400));
+  walls.add(new Wall(200, 580, 500, 20));
+  walls.add(new Wall(300, 300, 200, 20));
 }
 
-  walls.add(new Wall(100, 100, 600, 20));   // top horizontal wall
-  walls.add(new Wall(100, 200, 20, 400));   // left vertical wall
-  walls.add(new Wall(680, 200, 20, 400));   // right vertical wall
-  walls.add(new Wall(200, 580, 500, 20));   // bottom horizontal wall
-  walls.add(new Wall(300, 300, 200, 20));   // middle section
 
-}
 
 
 
 void draw() {
   background(20);
+  switch(screen) {
+
+    case 'S': // Start screen
+      startScreen();
+      btnStart.display();
+      break;
+
+    case 'M': // Menu screen
+      drawMenu();
+      btnMenu.display();
+      btnSettings.display();
+      break;
+
+    case 'T': // Settings screen
+      drawSettings();
+      btnBack.display();
+      break;
+
+    case 'P': // Play screen
+      drawPlay();
   edgar.display();  
  
   infoPanel();
@@ -85,61 +110,9 @@ for (int i = ghosts.size() - 1; i >= 0; i--) {
       ghosts.add(new Ghost());  
   }
 }
+  }
 }
-    
 
-
-//boolean edgarWillHitWall(char key){
-  
-   // float px = edgar.x;
-   // float py = edgar.y;
-   // float pw = edgar.w;
-   // float ph = edgar.h;
-   
-  
-   // if (key == 'w') py -= 10;
-   
-    //if (key == 's') py += 10;
-     
-   // if (key == 'a') px -= 10;
-  
-    //if (key == 'd') px += 10;
-  
- // for (int i = 0; i < walls.size(); i++) {
- //   Wall w = walls.get(i);
- //   boolean intersect = rectsOverlap(px, py, pw, ph, w.x, w.y, w.w, w.h);
-  //  if (intersect){
-  //    return true;
-    //}
- // }
- // return false;
-//}
-
-//boolean inRange(float x1,float x2, float w2){
- // if (x1 >= x2 && x1 <= (x2+w2)) {
-  //  return true;
- // }
- // return false;
-//}
-
-//boolean rectsOverlap(float x1, float y1, float w1, float h1, float x2, float y2, float w2, float h2) {
-//    
-   // println(x1,y1,h1,w1);
-   // println(x2,y2,h2,w2);
-    
-    //if (inRange(x1, x2, w2)) {
-    //  if (inRange(y1, y2, h2)) {
-       //  return true;
-      //}
-    //}
-    
-    //if (inRange(x2, y1, w1)) {
-    //  if (inRange(y2, y1, h1)) {
-    //    return true;
-    //  }
-    //}
-    //return false;
-  //}
 
 void keyPressed() {
  
@@ -166,7 +139,6 @@ void startScreen() {
   text("Echos of the Maze", width / 2, 100);
   textSize(30);
   text("Bailey McKeithen, Adeline Wright,Kirubashinilakshana Senthilnathan", width / 2, 150);
-  text("Click to Start", width / 2, 200);
 }
 
 void gameOverScreen() {
