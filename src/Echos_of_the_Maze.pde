@@ -106,57 +106,7 @@ void draw() {
 
 
 
-//boolean edgarWillHitWall(char key){
 
-// float px = edgar.x;
-// float py = edgar.y;
-// float pw = edgar.w;
-// float ph = edgar.h;
-
-
-// if (key == 'w') py -= 10;
-
-//if (key == 's') py += 10;
-
-// if (key == 'a') px -= 10;
-
-//if (key == 'd') px += 10;
-
-// for (int i = 0; i < walls.size(); i++) {
-//   Wall w = walls.get(i);
-//   boolean intersect = rectsOverlap(px, py, pw, ph, w.x, w.y, w.w, w.h);
-//  if (intersect){
-//    return true;
-//}
-// }
-// return false;
-//}
-
-//boolean inRange(float x1,float x2, float w2){
-// if (x1 >= x2 && x1 <= (x2+w2)) {
-//  return true;
-// }
-// return false;
-//}
-
-//boolean rectsOverlap(float x1, float y1, float w1, float h1, float x2, float y2, float w2, float h2) {
-//
-// println(x1,y1,h1,w1);
-// println(x2,y2,h2,w2);
-
-//if (inRange(x1, x2, w2)) {
-//  if (inRange(y1, y2, h2)) {
-//  return true;
-//}
-//}
-
-//if (inRange(x2, y1, w1)) {
-//  if (inRange(y2, y1, h1)) {
-//    return true;
-//  }
-//}
-//return false;
-//}
 
 void keyPressed() {
 
