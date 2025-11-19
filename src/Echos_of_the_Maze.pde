@@ -12,6 +12,7 @@ ArrayList<Coin> coins;
 ArrayList<Wall> walls;
 ArrayList<Spear> spears;
 PImage start;
+PImage end;
 boolean play;
 
 
@@ -26,7 +27,7 @@ void setup() {
   edgar = new Player();
   //Kirubashinilakshana Bailey
 btnStart = new Button("Start",390, 315, 395, 140);
-
+end = loadImage("EndPage.png");
   ghosts = new ArrayList<Ghost>();
   coins = new ArrayList<Coin>();
   walls = new ArrayList<Wall>();
@@ -55,7 +56,10 @@ void draw() {
     startScreen();
     return;
   }
-
+else if (edgar.health <= 0) {
+    gameOverScreen();
+    return;
+}
     background(20);
     infoPanel();
     edgar.display();
@@ -133,7 +137,7 @@ void keyPressed() {
 
 void mousePressed() {
   if (!play && btnStart.clicked()) {
-    play = true;       // start the game
+    play = true;
   }
 }
 
@@ -154,14 +158,12 @@ void startScreen() {
 }
 
 void gameOverScreen() {
-  background(0);
-
-  fill(255, 0, 0);
-  textAlign(CENTER);
-  textSize(50);
-  text("GAME OVER", width / 2, height - 100);
-  textSize(30);
-  text("Final Score: " + score, width / 2, height - 50);
+  imageMode(CENTER);
+image(end,width/2,height/2,width,height);
+fill(255, 117, 31);
+textAlign(CENTER);
+  textSize(90);
+  text("Final Score: " + score, width / 2, height - 30);
 }
 
 void infoPanel() {
