@@ -39,11 +39,13 @@ btnStart = new Button("Start",390, 315, 395, 140);
     ghosts.add(new Ghost());
   }
 
-  walls.add(new Wall(100, 100, 600, 20));   // top horizontal wall
-  walls.add(new Wall(100, 200, 20, 400));   // left vertical wall
-  walls.add(new Wall(680, 200, 20, 400));   // right vertical wall
-  walls.add(new Wall(200, 580, 500, 20));   // bottom horizontal wall
-  walls.add(new Wall(300, 300, 200, 20));   // middle section
+walls.add(new Wall(390, 50, 600, 20)); // top horizontal wall
+walls.add(new Wall(100, 350, 20, 400)); // left vertical wall
+walls.add(new Wall(100, 500, 20, 400)); // continued left vertical wall
+walls.add(new Wall(680, 250, 20, 400)); // right vertical wall
+walls.add(new Wall(680, 500, 20, 400)); //continued right vertical wall
+walls.add(new Wall(390, 700, 600, 20)); // bottom horizontal wall
+walls.add(new Wall(390, 300, 300, 20)); // middle section
 }
 
 
