@@ -126,7 +126,7 @@ void keyPressed() {
 
   if (key == 'd') edgar.x += 10;
 
- } else if (keyCode == DOWN) {
+ else if (keyCode == DOWN) {
     edgar.y+=10;
   } else if (keyCode == LEFT) {
     edgar.x-=10;
