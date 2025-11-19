@@ -119,6 +119,14 @@ void keyPressed() {
   if (key == 'a') edgar.x -= 10;
 
   if (key == 'd') edgar.x += 10;
+
+ } else if (keyCode == DOWN) {
+    edgar.y+=10;
+  } else if (keyCode == LEFT) {
+    edgar.x-=10;
+  } else if (keyCode == RIGHT) {
+    edgar.x+=10;
+  }
 }
 
 void mousePressed() {
