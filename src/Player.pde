@@ -1,3 +1,4 @@
+//Bailey
 class Player {
 // Member Variables
 int x,y,w,h,spearCount, turretCount, health;
