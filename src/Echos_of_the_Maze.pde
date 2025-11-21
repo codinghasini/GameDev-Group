@@ -4,6 +4,7 @@ char screen = 's';
 //game over, a = app stats
 //Kirubashinilakshana Bailey
 Button btnStart, btnMenu, btnSettings, btnBack;
+int level;
 int score;
 int ghostsHit = 0;
 ArrayList<Ghost> ghosts;
@@ -11,10 +12,9 @@ ArrayList<Coin> coins;
 ArrayList<Wall> walls;
 ArrayList<Spear> spears;
 PImage start;
-PImage end;
+PImage menu;
 boolean play;
-int level = 1;
-float timeLeft = 10;
+boolean instructions;
 
 
 
@@ -22,13 +22,22 @@ float timeLeft = 10;
 void setup() {
   size(1200, 700);
   background(20);
-  start = loadImage("start.png"); 
+  menu = loadImage("menu.png");
+  start = loadImage("start.png");
   level=1;
   score = 0;
   edgar = new Player();
   //Kirubashinilakshana Bailey
-btnStart = new Button("Start",390, 315, 395, 140);
-end = loadImage("EndPage.png");
+
+
+  btnStart = new Button("Start", 390, 315, 395, 140);
+  btnMenu = new Button("How to Play", 390, 508, 395, 140);
+ 
+
+
+
+
+
   ghosts = new ArrayList<Ghost>();
   coins = new ArrayList<Coin>();
   walls = new ArrayList<Wall>();
@@ -41,84 +50,82 @@ end = loadImage("EndPage.png");
     ghosts.add(new Ghost());
   }
 
-walls.add(new Wall(390, 50, 600, 20)); // top horizontal wall
-walls.add(new Wall(100, 350, 20, 400)); // left vertical wall
-walls.add(new Wall(100, 500, 20, 400)); // continued left vertical wall
-walls.add(new Wall(680, 250, 20, 400)); // right vertical wall
-walls.add(new Wall(680, 500, 20, 400)); //continued right vertical wall
-walls.add(new Wall(390, 700, 600, 20)); // bottom horizontal wall
-walls.add(new Wall(390, 300, 300, 20)); // middle section
+  walls.add(new Wall(100, 100, 600, 20));   // top horizontal wall
+  walls.add(new Wall(100, 200, 20, 400));   // left vertical wall
+  walls.add(new Wall(680, 200, 20, 400));   // right vertical wall
+  walls.add(new Wall(200, 580, 500, 20));   // bottom horizontal wall
+  walls.add(new Wall(300, 300, 200, 20));   // middle section
 }
 
 
 
 void draw() {
+
+
+
+
+  if (instructions) {
+    instructionScreen();
+    return;
+  }
+
   if (!play) {
     startScreen();
     return;
   }
-timeLeft = timeLeft -1.0/60;
-    
-    if (timeLeft <= 0) {
-    level = level +1;
-    timeLeft = 10;
+
+
+  background(20);
+  infoPanel();
+  edgar.display();
+
+
+
+
+
+
+
+  for (int i = 0; i < walls.size(); i++) {
+    walls.get(i).display();
   }
 
-else if (edgar.health <= 0) {
-    gameOverScreen();
-    return;
+  for (int i = coins.size() - 1; i >= 0; i--) {
+    Coin c = coins.get(i);
+    c.display();
+    if (c.intersect(edgar)) {
+      score += 10;
+      coins.remove(i);
+      coins.add(new Coin());
+    }
+  }
+
+
+  // can edgar move into next location or is it occupied by a wall
+  // edgar intersection with coins is off
+  // no ghosts
+
+
+  for (int i = ghosts.size() - 1; i >= 0; i--) {
+    Ghost g = ghosts.get(i);
+    g.display();
+
+
+    if (g.y > height + g.diam/2) {
+      ghosts.remove(i);
+      ghosts.add(new Ghost());
+      continue;
+    }
+
+
+    if (edgar.intersect(g)) {
+      edgar.health -= 10;
+      ghostsHit++;
+      println("Hit! Health:", edgar.health);
+      ghosts.remove(i);
+      ghosts.add(new Ghost());
+    }
+  }
 }
-    background(20);
-    infoPanel();
-    edgar.display();
-
-
-
-
-    for (int i = 0; i < walls.size(); i++) {
-      walls.get(i).display();
-    }
-
-    for (int i = coins.size() - 1; i >= 0; i--) {
-      Coin c = coins.get(i);
-      c.display();
-      if (c.intersect(edgar)) {
-        score += 10;
-        coins.remove(i);
-        coins.add(new Coin());
-      }
-    }
-
-
-    // can edgar move into next location or is it occupied by a wall
-    // edgar intersection with coins is off
-    // no ghosts
-
-
-    for (int i = ghosts.size() - 1; i >= 0; i--) {
-      Ghost g = ghosts.get(i);
-      g.display();
-
-
-      if (g.y > height + g.diam/2) {
-        ghosts.remove(i);
-        ghosts.add(new Ghost());
-        continue;
-      }
-
-
-      if (edgar.intersect(g)) {
-        edgar.health -= 10;
-        ghostsHit++;
-        println("Hit! Health:", edgar.health);
-        ghosts.remove(i);
-        ghosts.add(new Ghost());
-      }
-    }
-  }
-
-
-
 
 
 
@@ -133,22 +140,28 @@ void keyPressed() {
   if (key == 'a') edgar.x -= 10;
 
   if (key == 'd') edgar.x += 10;
-
- else if (keyCode == DOWN) {
-    edgar.y+=10;
-  } else if (keyCode == LEFT) {
-    edgar.x-=10;
-  } else if (keyCode == RIGHT) {
-    edgar.x+=10;
-  }
 }
 
 void mousePressed() {
   if (!play && btnStart.clicked()) {
-    play = true;
+    play = true;       // start the game
+  }
+
+  if (!instructions && btnMenu.clicked()) {
+    instructions = true; // show menu screen 
   }
 }
 
+void instructionScreen() {
+  background(0);
+  imageMode(CENTER);
+  image(menu, width/2, height/2);
+
+
+  fill(255);
+  textAlign(CENTER);
+  textSize(30);
+}
 
 
 
@@ -159,19 +172,22 @@ void startScreen() {
 
 
   btnStart.display();
+  btnMenu.display();
 
   fill(255);
   textAlign(CENTER);
   textSize(40);
 }
-//Bailey Adeline
+
 void gameOverScreen() {
-  imageMode(CENTER);
-image(end,width/2,height/2,width,height);
-fill(255, 117, 31);
-textAlign(CENTER);
-  textSize(90);
-  text("Final Score: " + score, width / 2, height - 30);
+  background(0);
+
+  fill(255, 0, 0);
+  textAlign(CENTER);
+  textSize(50);
+  text("GAME OVER", width / 2, height - 100);
+  textSize(30);
+  text("Final Score: " + score, width / 2, height - 50);
 }
 
 void infoPanel() {
@@ -187,10 +203,7 @@ void infoPanel() {
   text("Score: " + score, 20, height - 10);
   text("Ghosts Hit: " + ghostsHit, 200, height - 10);
 
-  text("Level: "+ level, 800 , 690);
-  text("Next level in:" + nf(timeLeft, 1,1) + "s", 900, 690);
 
   text("Health: " + edgar.health, 420, height - 10);
   text("Ammo: " + edgar.spearCount, 620, height - 10);
 }
-
