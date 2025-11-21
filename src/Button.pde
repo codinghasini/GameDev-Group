@@ -1,4 +1,3 @@
-//Kirubashinilakshana
 class Button {
   String label;
   float x, y, w, h;
@@ -13,13 +12,13 @@ class Button {
 
 
   void display() {
-    fill(255);
+    fill(#FF991C);
     stroke(0);
     rect(x, y, w, h, 10);
 
     fill(0);
     textAlign(CENTER, CENTER);
-    textSize(16);
+    textSize(50);
     text(label, x + w/2, y + h/2);
   }
 
