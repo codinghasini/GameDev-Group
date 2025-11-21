@@ -1,3 +1,4 @@
+//Adeline
 class Coin {
 // Member Variables
 int x, y, w, speed;
