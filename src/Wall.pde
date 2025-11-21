@@ -1,3 +1,4 @@
+//Kirubashinilakshana
 class Wall {
   int x, y, w, h;
 
