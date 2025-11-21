@@ -1,3 +1,4 @@
+//Adeline
 class Spear {
   // Member Variables
   int x, y, frame, frameCount, speed;
