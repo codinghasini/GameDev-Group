@@ -156,7 +156,7 @@ void startScreen() {
   textAlign(CENTER);
   textSize(40);
 }
-
+//Bailey Adeline
 void gameOverScreen() {
   imageMode(CENTER);
 image(end,width/2,height/2,width,height);
