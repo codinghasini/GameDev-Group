@@ -178,7 +178,8 @@ void startScreen() {
   textAlign(CENTER);
   textSize(40);
 }
-
+//Bailey (code)
+//Adeline(art)
 void gameOverScreen() {
   background(0);
 
