@@ -1,3 +1,4 @@
+//Bailey
 class Ghost {
 // Member Variables
 int x, y, diam, speed,health;
