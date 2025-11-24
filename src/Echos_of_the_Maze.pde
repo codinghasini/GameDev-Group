@@ -11,12 +11,11 @@ ArrayList<Ghost> ghosts;
 ArrayList<Coin> coins;
 ArrayList<Wall> walls;
 ArrayList<Spear> spears;
-ArrayList<Spider> spiders;
 PImage start;
 PImage menu;
 boolean play;
 boolean instructions;
-Timer spiderTimer;
+
 
 
 
@@ -29,8 +28,7 @@ void setup() {
   score = 0;
   edgar = new Player();
 
- spiderTimer = new Timer(900);
-  spiderTimer.start();
+
 
   //Kirubashinilakshana Bailey
   btnStart = new Button("Start", 390, 315, 395, 140);
@@ -124,30 +122,6 @@ void draw() {
       ghosts.remove(i);
       ghosts.add(new Ghost());
     }
-}
-  if (spiderTimer.isFinished()) {
-  spiders.add(new Spider());
-  spiderTimer.start();        
-}
-
-
-for (int i = spiders.size() - 1; i >= 0; i--) {
-  Spider sp = spiders.get(i);
-
-  sp.display();  
-  sp.move();    
-
- 
-  if (sp.reachedBottom()) {
-    spiders.remove(i);
-    spiders.add(new Spider());
-  }
-
-
-  if (sp.intersect(edgar)) {
-    edgar.health -= 15;  
-    spiders.remove(i);
-  }
 
 }
 }
