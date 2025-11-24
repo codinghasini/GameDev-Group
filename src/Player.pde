@@ -51,9 +51,6 @@ float d= dist(x,y,r.x,r.y);
     return false;
   }
 }
-boolean intersect(Spider r) {
-  float d = dist(x, y, r.x, r.y);
-  return d < 50;
-}
+
 
 }
