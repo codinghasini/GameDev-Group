@@ -13,6 +13,7 @@ ArrayList<Wall> walls;
 ArrayList<Spear> spears;
 PImage start;
 PImage menu;
+PImage end;
 boolean play;
 boolean instructions;
 
@@ -24,6 +25,7 @@ void setup() {
   background(20);
   menu = loadImage("menu.png");
   start = loadImage("start.png");
+  end = loadImage("EndPage.png");
   level=1;
   score = 0;
   edgar = new Player();
@@ -71,7 +73,10 @@ void draw() {
     startScreen();
     return;
   }
-
+if (edgar.health <= 0) {
+  gameOverScreen();
+  return;
+}
 
   background(20);
   infoPanel();
@@ -191,11 +196,12 @@ void startScreen() {
 //Adeline (art)
 void gameOverScreen() {
   background(0);
+ imageMode(CENTER);
+  image(end, width/2, height/2);
 
   fill(255, 0, 0);
   textAlign(CENTER);
-  textSize(50);
-  text("GAME OVER", width / 2, height - 100);
+ 
   textSize(30);
   text("Final Score: " + score, width / 2, height - 50);
 }
