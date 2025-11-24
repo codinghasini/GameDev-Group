@@ -39,7 +39,7 @@ void setup() {
   coins = new ArrayList<Coin>();
   walls = new ArrayList<Wall>();
   spears= new ArrayList <Spear>();
- spiders= new ArrayList <Spider>();
+
 
   for (int i = 0; i < 5; i++) {
     coins.add(new Coin());
