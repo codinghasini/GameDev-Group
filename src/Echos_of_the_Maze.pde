@@ -11,12 +11,11 @@ ArrayList<Ghost> ghosts;
 ArrayList<Coin> coins;
 ArrayList<Wall> walls;
 ArrayList<Spear> spears;
-ArrayList <Spider> spiders;
 PImage start;
-PImage EndPage;
 PImage menu;
 boolean play;
 boolean instructions;
+
 
 
 
@@ -25,20 +24,23 @@ void setup() {
   background(20);
   menu = loadImage("menu.png");
   start = loadImage("start.png");
-  EndPage = loadImage("EndPage.png");
   level=1;
   score = 0;
   edgar = new Player();
+
+
 
   //Kirubashinilakshana Bailey
   btnStart = new Button("Start", 390, 315, 395, 140);
   btnMenu = new Button("How to Play", 390, 508, 395, 140);
  
+
   ghosts = new ArrayList<Ghost>();
   coins = new ArrayList<Coin>();
   walls = new ArrayList<Wall>();
   spears= new ArrayList <Spear>();
-spiders= new ArrayList <Spider>();
+
+
   for (int i = 0; i < 5; i++) {
     coins.add(new Coin());
   }
@@ -54,18 +56,32 @@ spiders= new ArrayList <Spider>();
 }
 
 
+
 void draw() {
+
+
+
+
   if (instructions) {
     instructionScreen();
     return;
   }
 
+  if (!play) {
+    startScreen();
+    return;
   }
 
 
   background(20);
   infoPanel();
   edgar.display();
+
+
+
+
+
+
 
   for (int i = 0; i < walls.size(); i++) {
     walls.get(i).display();
@@ -80,6 +96,7 @@ void draw() {
       coins.add(new Coin());
     }
   }
+
 
   // can edgar move into next location or is it occupied by a wall
   // edgar intersection with coins is off
@@ -107,10 +124,7 @@ void draw() {
     }
 
 }
-
-
 }
-
 
 
 
@@ -177,13 +191,15 @@ void startScreen() {
 //Adeline (art)
 void gameOverScreen() {
   background(0);
-imageMode(CENTER);
-  image(EndPage, width/2, height/2);
+
   fill(255, 0, 0);
   textAlign(CENTER);
+  textSize(50);
+  text("GAME OVER", width / 2, height - 100);
   textSize(30);
   text("Final Score: " + score, width / 2, height - 50);
 }
+
 void infoPanel() {
   rectMode(CENTER);
   fill(127, 127);
