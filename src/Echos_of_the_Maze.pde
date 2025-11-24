@@ -4,7 +4,6 @@ char screen = 's';
 //game over, a = app stats
 //Kirubashinilakshana Bailey
 Button btnStart, btnMenu, btnSettings, btnBack;
-int level;
 int score;
 int ghostsHit = 0;
 ArrayList<Ghost> ghosts;
@@ -15,6 +14,8 @@ PImage start;
 PImage menu;
 boolean play;
 boolean instructions;
+int level = 1;
+float timeLeft = 10;
 
 
 
@@ -33,6 +34,7 @@ void setup() {
   //Kirubashinilakshana Bailey
   btnStart = new Button("Start", 390, 315, 395, 140);
   btnMenu = new Button("How to Play", 390, 508, 395, 140);
+  end = loadImage("EndPage.png");
  
 
   ghosts = new ArrayList<Ghost>();
@@ -48,11 +50,13 @@ void setup() {
     ghosts.add(new Ghost());
   }
 
-  walls.add(new Wall(100, 100, 600, 20));   // top horizontal wall
-  walls.add(new Wall(100, 200, 20, 400));   // left vertical wall
-  walls.add(new Wall(680, 200, 20, 400));   // right vertical wall
-  walls.add(new Wall(200, 580, 500, 20));   // bottom horizontal wall
-  walls.add(new Wall(300, 300, 200, 20));   // middle section
+  walls.add(new Wall(390, 50, 600, 20)); // top horizontal wall
+  walls.add(new Wall(100, 350, 20, 400)); // left vertical wall
+  walls.add(new Wall(100, 500, 20, 400)); // continued left vertical wall
+  walls.add(new Wall(680, 250, 20, 400)); // right vertical wall
+  walls.add(new Wall(680, 500, 20, 400)); //continued right vertical wall
+  walls.add(new Wall(390, 700, 600, 20)); // bottom horizontal wall
+  walls.add(new Wall(390, 300, 300, 20)); // middle section
 }
 
 
@@ -71,15 +75,20 @@ void draw() {
     startScreen();
     return;
   }
+timeLeft = timeLeft -1.0/60;
+
+  if (timeLeft <= 0) {
+    level = level +1;
+    timeLeft = 10;
+  } else if (edgar.health <= 0) {
+    gameOverScreen();
+    return;
+  }
 
 
   background(20);
   infoPanel();
   edgar.display();
-
-
-
-
 
 
 
