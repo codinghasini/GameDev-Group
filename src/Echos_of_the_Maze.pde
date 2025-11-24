@@ -13,6 +13,7 @@ ArrayList<Wall> walls;
 ArrayList<Spear> spears;
 ArrayList <Spider> spiders;
 PImage start;
+PImage EndPage;
 PImage menu;
 boolean play;
 boolean instructions;
@@ -24,6 +25,7 @@ void setup() {
   background(20);
   menu = loadImage("menu.png");
   start = loadImage("start.png");
+  EndPage = loadImage("EndPage.png");
   level=1;
   score = 0;
   edgar = new Player();
@@ -175,15 +177,13 @@ void startScreen() {
 //Adeline (art)
 void gameOverScreen() {
   background(0);
-
+imageMode(CENTER);
+  image(EndPage, width/2, height/2);
   fill(255, 0, 0);
   textAlign(CENTER);
-  textSize(50);
-  text("GAME OVER", width / 2, height - 100);
   textSize(30);
   text("Final Score: " + score, width / 2, height - 50);
 }
-
 void infoPanel() {
   rectMode(CENTER);
   fill(127, 127);
