@@ -16,9 +16,6 @@ PImage start;
 PImage menu;
 boolean play;
 boolean instructions;
-int level = 1;
-float timeLeft = 10;
-
 
 
 
@@ -60,14 +57,7 @@ void draw() {
     instructionScreen();
     return;
   }
-timeLeft = timeLeft -1.0/60;
 
-  if (timeLeft <= 0) {
-    level = level +1;
-    timeLeft = 10;
-  if (!play) {
-    startScreen();
-    return;
   }
 
 
@@ -207,8 +197,6 @@ void infoPanel() {
   text("Score: " + score, 20, height - 10);
   text("Ghosts Hit: " + ghostsHit, 200, height - 10);
 
- text("Level: "+ level, 800, 690);
-  text("Next level in:" + nf(timeLeft, 1, 1) + "s", 900, 690);
 
   text("Health: " + edgar.health, 420, height - 10);
   text("Ammo: " + edgar.spearCount, 620, height - 10);
