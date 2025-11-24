@@ -78,6 +78,7 @@ void draw() {
     timeLeft = timeLeft -1.0/60;
   if (timeLeft <= 0) {
     level = level +1;
+    score += 100; 
     timeLeft = 10;
   } else if (edgar.health <= 0) {
     gameOverScreen();
