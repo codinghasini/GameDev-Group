@@ -37,7 +37,7 @@ void setup() {
   //Kirubashinilakshana Bailey
   btnStart = new Button("Start", 390, 315, 395, 140);
   btnMenu = new Button("How to Play", 390, 508, 395, 140);
- btnBack = new Button("Back", 20, 20, 200, 80)
+ btnBack = new Button("Back", 20, 20, 200, 80);
 
   ghosts = new ArrayList<Ghost>();
   coins = new ArrayList<Coin>();
