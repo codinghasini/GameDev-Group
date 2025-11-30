@@ -37,7 +37,7 @@ void setup() {
   //Kirubashinilakshana Bailey
   btnStart = new Button("Start", 390, 315, 395, 140);
   btnMenu = new Button("How to Play", 390, 508, 395, 140);
- 
+ btnBack = new Button("Back", 20, 20, 200, 80)
 
   ghosts = new ArrayList<Ghost>();
   coins = new ArrayList<Coin>();
@@ -166,6 +166,9 @@ void mousePressed() {
   if (!instructions && btnMenu.clicked()) {
     instructions = true; // show menu screen 
   }
+if (instructions && btnBack.clicked()) {
+    instructions = false;
+  }
 }
 
 void instructionScreen() {
@@ -173,7 +176,7 @@ void instructionScreen() {
   imageMode(CENTER);
   image(menu, width/2, height/2);
 
-
+btnBack.display();
   fill(255);
   textAlign(CENTER);
   textSize(30);
