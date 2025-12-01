@@ -13,6 +13,8 @@ class Button {
 
 
   void display() {
+    
+    rectMode(CORNER);
     fill(#FF991C);
     stroke(0);
     rect(x, y, w, h, 10);
