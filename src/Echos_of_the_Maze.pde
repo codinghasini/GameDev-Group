@@ -25,6 +25,7 @@ float timeLeft = 10;
 void setup() {
   size(1200, 700);
   background(20);
+  rectMode(CENTER);
   menu = loadImage("menu.png");
   start = loadImage("start.png");
   end = loadImage("EndPage.png");
@@ -37,7 +38,7 @@ void setup() {
   //Kirubashinilakshana Bailey
   btnStart = new Button("Start", 390, 315, 395, 140);
   btnMenu = new Button("How to Play", 390, 508, 395, 140);
- btnBack = new Button("Back", 20, 20, 200, 80);
+  btnBack = new Button("Back", 20, 20, 200, 80);
 
   ghosts = new ArrayList<Ghost>();
   coins = new ArrayList<Coin>();
@@ -52,20 +53,18 @@ void setup() {
     ghosts.add(new Ghost());
   }
 
-    walls.add(new Wall(390, 50, 600, 20)); // top horizontal wall
+  walls.add(new Wall(390, 50, 600, 20)); // top horizontal wall
   walls.add(new Wall(100, 350, 20, 400)); // left vertical wall
- // walls.add(new Wall(100, 500, 20, 400)); // continued left vertical wall
+  // walls.add(new Wall(100, 500, 20, 400)); // continued left vertical wall
   walls.add(new Wall(680, 250, 20, 400)); // right vertical wall
- // walls.add(new Wall(680, 500, 20, 400)); //continued right vertical wall
- // walls.add(new Wall(390, 700, 600, 20)); // bottom horizontal wall
+  // walls.add(new Wall(680, 500, 20, 400)); //continued right vertical wall
+  // walls.add(new Wall(390, 700, 600, 20)); // bottom horizontal wall
   walls.add(new Wall(390, 300, 300, 20)); // middle section
 }
 
 
 
 void draw() {
-
-
   if (instructions) {
     instructionScreen();
     return;
@@ -75,19 +74,30 @@ void draw() {
     startScreen();
     return;
   }
-    timeLeft = timeLeft -1.0/60;
+
+
+  background(20);
+  infoPanel();
+  edgar.display();
+
+  timeLeft = timeLeft -1.0/60;
   if (timeLeft <= 0) {
     level = level +1;
-    score += 100; 
+    score += 100;
     timeLeft = 10;
   } else if (edgar.health <= 0) {
     gameOverScreen();
     return;
   }
 
-  background(20);
-  infoPanel();
-  edgar.display();
+
+
+  //edgar.x = constrain(edgar.x, edgar.w, width  - edgar.w);
+  // edgar.y = constrain(edgar.y, edgar.w, height - edgar.w);
+
+
+
+
 
 
   for (int i = 0; i < walls.size(); i++) {
@@ -129,45 +139,83 @@ void draw() {
       ghosts.remove(i);
       ghosts.add(new Ghost());
     }
-
-}
+  }
 }
 
 
 
 void keyPressed() {
+  // Saves previous player position before moving,
+  //and will restore values if player hits the wall
+  float prevX = edgar.x;
+  float prevY = edgar.y;
+  if (key == 'w' || keyCode == UP)    edgar.y -= 10;
+  if (key == 's' || keyCode == DOWN)  edgar.y += 10;
+  if (key == 'a' || keyCode == LEFT)  edgar.x -= 10;
+  if (key == 'd' || keyCode == RIGHT) edgar.x += 10;
 
-  //if (!edgarWillHitWall(key)){
+  // COLLISION FOR ALL WALLS
+  for (Wall w : walls) { // After movement, check all walls to see if edgar intersected it
+    if (w.intersects(edgar)) { //IF the collision does happen
+      // undo the movement (stop) so that player does not go through wall
+      edgar.x = prevX;
+      edgar.y = prevY;
 
-  if (key == 'w') edgar.y -= 10;
-
-  if (key == 's') edgar.y += 10;
-
-  if (key == 'a') edgar.x -= 10;
-
-  if (key == 'd') edgar.x += 10;
-
-else if (keyCode == DOWN) {
-      edgar.y+=10;
-    } else if (keyCode == LEFT) {
-      edgar.x-=10;
-    } else if (keyCode == RIGHT) {
-      edgar.x+=10;
-    } else if (keyCode == UP) {
-      edgar.y-=10;
+      // stop checking other walls once collision is detected
+      break;
     }
+  }
 }
 
+
+//if (key == 'w') edgar.y -= 10;
+
+//if (key == 's') edgar.y += 10;
+
+// if (key == 'a') edgar.x -= 10;
+
+//if (key == 'd') edgar.x += 10;
+
+// else if (keyCode == DOWN) {
+//   edgar.y+=10;
+// } else if (keyCode == LEFT) {
+//edgar.x-=10;
+// } else if (keyCode == RIGHT) {
+// edgar.x+=10;
+// } else if (keyCode == UP) {
+// edgar.y-=10;
+
+//for (Wall w : walls) {
+//  if (w.intersects(edgar)) {
+//   edgar.x = prevX;
+//  edgar.y = prevY;
+// break;
+//}
+//}
+// }
+//}
+
 void mousePressed() {
-  if (!play && btnStart.clicked()) {
-    play = true;       // start the game
+
+  if (! play && !instructions) {
+
+    if (!play && btnStart.clicked()) {
+      play = true;       // start the game
+    }
+
+    if ( btnMenu.clicked()) {
+      instructions = true; // show menu screen
+      return;
+    }
   }
 
-  if (!instructions && btnMenu.clicked()) {
-    instructions = true; // show menu screen 
-  }
-if (instructions && btnBack.clicked()) {
-    instructions = false;
+  if (instructions) {
+
+    if (btnBack.clicked()) {
+      instructions = false;
+      return;
+      
+    }
   }
 }
 
@@ -176,7 +224,7 @@ void instructionScreen() {
   imageMode(CENTER);
   image(menu, width/2, height/2);
 
-btnBack.display();
+  btnBack.display();
   fill(255);
   textAlign(CENTER);
   textSize(30);
@@ -201,12 +249,12 @@ void startScreen() {
 //Adeline (art)
 void gameOverScreen() {
   background(0);
- imageMode(CENTER);
+  imageMode(CENTER);
   image(end, width/2, height/2);
 
   fill(255, 0, 0);
   textAlign(CENTER);
- 
+
   textSize(30);
   text("Final Score: " + score, width / 2, height - 50);
 }
@@ -223,7 +271,7 @@ void infoPanel() {
 
   text("Score: " + score, 20, height - 10);
   text("Ghosts Hit: " + ghostsHit, 200, height - 10);
-  
+
   text("Level: "+ level, 800, 690);
   text("Next level in:" + nf(timeLeft, 1, 1) + "s", 900, 690);
 
