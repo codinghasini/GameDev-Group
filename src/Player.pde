@@ -11,6 +11,7 @@ w=100;
 h=100;
 health=100;
 spearCount=100;
+//Adeline 
 character = loadImage("character1.png");
 }
 
