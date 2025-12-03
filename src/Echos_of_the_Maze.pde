@@ -12,8 +12,10 @@ ArrayList<Wall> walls;
 ArrayList<Spear> spears;
 ArrayList<Spider> spiders;
 Timer spidertimer;
+//Kirubashinilakshana
 PImage start;
 PImage menu;
+//Adeline
 PImage end;
 boolean play;
 boolean instructions;
@@ -28,13 +30,15 @@ void setup() {
   size(1200, 700);
   background(20);
   rectMode(CENTER);
+//Kirubashinilakshana
   menu = loadImage("menu.png");
   start = loadImage("start.png");
+//Adeline
   end = loadImage("EndPage.png");
   level=1;
   score = 0;
   edgar = new Player();
-
+//Bailey
   spidertimer = new Timer(5000);
   spidertimer.start();
 
@@ -165,6 +169,7 @@ void draw() {
     spiders.add(new Spider());
     }
   }
+//Adeline - spear
  for (int i = spears.size() - 1; i >= 0; i--) {
   Spear s = spears.get(i);
   s.move();
@@ -188,7 +193,7 @@ void draw() {
       continue;   
     }
   }
-
+//Bailey
   for (int sp = spiders.size() - 1; sp >= 0; sp--) {
     Spider spider = spiders.get(sp);
 
