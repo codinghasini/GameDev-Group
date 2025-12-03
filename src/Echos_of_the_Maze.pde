@@ -34,7 +34,7 @@ void setup() {
 //Kirubashinilakshana
   menu = loadImage("menu.png");
   start = loadImage("start.png");
-//Adeline
+//Adeline, Loading in the screen for Game Over, adding levels, and starting the score at 0
   end = loadImage("EndPage.png");
   level=1;
   score = 0;
@@ -46,7 +46,7 @@ wsound = new SoundFile(this, "woosh.mp3");
   spidertimer.start();
 
 
-  //Kirubashinilakshana Bailey
+  //Kirubashinilakshana Bailey, Adding in Code for bottons
   btnStart = new Button("Start", 390, 315, 395, 140);
   btnMenu = new Button("How to Play", 390, 508, 395, 140);
   btnBack = new Button("Back", 20, 20, 200, 80);
