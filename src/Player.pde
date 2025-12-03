@@ -6,19 +6,21 @@ class Player {
   PImage character;
   //Constructor
   Player() {
-    x=width/2;
-    y=height/2;
-    w=100;
-    h=100;
+    x= width/2;
+    y= height/2;
+    w= 55;
+    h= 55;
     health=100;
     spearCount=100;
     character = loadImage("character1.png");
+    character.resize(55,55);
   }
 
   //Member Methods
   void display() {
     imageMode (CENTER);
     image(character, x, y);
+    //character.resize(70,70);
   }
 
   void move(int x, int y) {
