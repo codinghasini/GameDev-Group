@@ -11,6 +11,7 @@ ArrayList<Coin> coins;
 ArrayList<Wall> walls;
 ArrayList<Spear> spears;
 ArrayList<Spider> spiders;
+ArrayList<Shield> shields;
 Timer spidertimer;
 //Kirubashinilakshana
 PImage start;
@@ -56,6 +57,7 @@ wsound = new SoundFile(this, "woosh.mp3");
   walls = new ArrayList<Wall>();
   spears= new ArrayList <Spear>();
   spiders= new ArrayList <Spider>();
+  shields= new ArrayList <Shield>();
 
   for (int i = 0; i < 5; i++) {
     coins.add(new Coin());
@@ -104,6 +106,12 @@ void draw() {
     for (int i = 0; i < spiderCount; i++) {
     spiders.add(new Spider());
      }
+  int shieldCount = (level + 1) / 5;
+    
+      for (int i = 0; i < shieldCount; i++) {
+    shields.add(new Shield());
+  }
+  
   } else if (edgar.health <= 0) {
     gameOverScreen();
     return;
@@ -203,6 +211,17 @@ void draw() {
       spears.remove(i);
       continue;   
       }
+    }
+  }
+ for (int i = shields.size() - 1; i >= 0; i--) {
+  Shield h = shields.get(i);
+  h.display();
+  
+
+  if (edgar.intersect(h)) {
+    edgar.health += 25;
+    shields.remove(i);
+    shields.add(new Shield());
     }
   }
 }
