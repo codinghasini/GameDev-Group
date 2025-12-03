@@ -21,7 +21,7 @@ boolean play;
 boolean instructions;
 int level = 1;
 float timeLeft = 10;
-//Sound for when spear shoots
+//Adeline, Sound for when spear shoots
 SoundFile wsound;
 import processing.sound.*;
 
