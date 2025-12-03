@@ -101,22 +101,17 @@ void draw() {
     spiders.clear();
     int spiderCount = (level + 1) / 2;
     
-      for (int i = 0; i < spiderCount; i++) {
+    for (int i = 0; i < spiderCount; i++) {
     spiders.add(new Spider());
-  }
-  }
-      else if (edgar.health <= 0) {
+     }
+  } else if (edgar.health <= 0) {
     gameOverScreen();
     return;
   }
   
 
-
-
   //edgar.x = constrain(edgar.x, edgar.w, width  - edgar.w);
   // edgar.y = constrain(edgar.y, edgar.w, height - edgar.w);
-
-
 
 
   for (int i = 0; i < walls.size(); i++) {
@@ -132,7 +127,6 @@ void draw() {
       coins.add(new Coin());
     }
   }
-
 
   for (int i = ghosts.size() - 1; i >= 0; i--) {
     Ghost g = ghosts.get(i);
@@ -154,16 +148,16 @@ void draw() {
     }
   }
    
-    for (int i = spiders.size() - 1; i >= 0; i--) {
-  Spider g = spiders.get(i);
-  g.display();
-  g.move();
+  for (int i = spiders.size() - 1; i >= 0; i--) {
+    Spider g = spiders.get(i);
+    g.display();
+    g.move();
 
 
     if (g.y > height + g.diam/2) {
-  spiders.remove(i);
-  spiders.add(new Spider());
-    continue;
+      spiders.remove(i);
+      spiders.add(new Spider());
+      continue;
 }
   if (edgar.intersect(g)) {
     edgar.health -= 50;
@@ -212,7 +206,6 @@ void draw() {
     }
   }
 }
-
 
 
 void keyPressed() {
@@ -291,9 +284,8 @@ void mousePressed() {
   }
   if (play) {
     spears.add(new Spear((int)edgar.x, (int)edgar.y));
-wsound.play();
-}
-
+    wsound.play();
+  }
 }
 
 void instructionScreen() {
