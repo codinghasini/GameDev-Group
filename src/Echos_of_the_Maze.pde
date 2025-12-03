@@ -47,7 +47,7 @@ wsound = new SoundFile(this, "woosh.mp3");
   spidertimer.start();
 
 
-  //Kirubashinilakshana Bailey, Adding in Code for bottons
+  //Kirubashinilakshana Bailey, Adding in Code for buttons
   btnStart = new Button("Start", 390, 315, 395, 140);
   btnMenu = new Button("How to Play", 390, 508, 395, 140);
   btnBack = new Button("Back", 20, 20, 200, 80);
@@ -67,7 +67,7 @@ wsound = new SoundFile(this, "woosh.mp3");
   }
  
 
-
+//Organizing Walls
   walls.add(new Wall(390, 50, 600, 20)); // top horizontal wall
   walls.add(new Wall(100, 350, 20, 400)); // left vertical wall
   // walls.add(new Wall(100, 500, 20, 400)); // continued left vertical wall
@@ -94,7 +94,7 @@ void draw() {
   background(20);
   infoPanel();
   edgar.display();
-
+// Adding in levels with a countdown
   timeLeft = timeLeft -1.0/60;
   if (timeLeft <= 0) {
     level = level +1;
@@ -106,6 +106,7 @@ void draw() {
     for (int i = 0; i < spiderCount; i++) {
     spiders.add(new Spider());
      }
+//Code for shield increasing levels and health
   int shieldCount = (level + 1) / 5;
     
       for (int i = 0; i < shieldCount; i++) {
