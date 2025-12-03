@@ -11,20 +11,16 @@ ArrayList<Coin> coins;
 ArrayList<Wall> walls;
 ArrayList<Spear> spears;
 ArrayList<Spider> spiders;
-ArrayList<Shield> shields;
 Timer spidertimer;
-//Kirubashinilakshana
 PImage start;
 PImage menu;
-//Adeline
 PImage end;
 boolean play;
 boolean instructions;
 int level = 1;
 float timeLeft = 10;
-//Adeline, Sound for when spear shoots
-SoundFile wsound;
-import processing.sound.*;
+
+
 
 
 
@@ -32,22 +28,18 @@ void setup() {
   size(1200, 700);
   background(20);
   rectMode(CENTER);
-//Kirubashinilakshana
   menu = loadImage("menu.png");
   start = loadImage("start.png");
-//Adeline, Loading in the screen for Game Over, adding levels, and starting the score at 0
   end = loadImage("EndPage.png");
   level=1;
   score = 0;
   edgar = new Player();
-//Adeline
-wsound = new SoundFile(this, "woosh.mp3");
-//Bailey
+
   spidertimer = new Timer(5000);
   spidertimer.start();
 
 
-  //Kirubashinilakshana Bailey, Adding in Code for buttons
+  //Kirubashinilakshana Bailey
   btnStart = new Button("Start", 390, 315, 395, 140);
   btnMenu = new Button("How to Play", 390, 508, 395, 140);
   btnBack = new Button("Back", 20, 20, 200, 80);
@@ -57,7 +49,6 @@ wsound = new SoundFile(this, "woosh.mp3");
   walls = new ArrayList<Wall>();
   spears= new ArrayList <Spear>();
   spiders= new ArrayList <Spider>();
-  shields= new ArrayList <Shield>();
 
   for (int i = 0; i < 5; i++) {
     coins.add(new Coin());
@@ -65,16 +56,22 @@ wsound = new SoundFile(this, "woosh.mp3");
   for (int i = 0; i < 3; i++) {
     ghosts.add(new Ghost());
   }
- 
 
-//Organizing Walls
-  walls.add(new Wall(390, 50, 600, 20)); // top horizontal wall
-  walls.add(new Wall(100, 350, 20, 400)); // left vertical wall
-  // walls.add(new Wall(100, 500, 20, 400)); // continued left vertical wall
-  walls.add(new Wall(680, 250, 20, 400)); // right vertical wall
-  // walls.add(new Wall(680, 500, 20, 400)); //continued right vertical wall
-  // walls.add(new Wall(390, 700, 600, 20)); // bottom horizontal wall
-  walls.add(new Wall(390, 300, 300, 20)); // middle section
+  walls.add(new Wall(600, 40, 1000, 15)); // top horizontal wall
+  walls.add(new Wall(105, 320, 15, 574)); // left vertical wall
+  walls.add(new Wall(1100, 373, 15, 470)); // right vertical wall
+  walls.add(new Wall(600, 600, 1000, 15)); // bottom horizontal wall
+  
+  
+
+// Vertical wall dropping down from that top wall (near left)
+walls.add(new Wall(260, 315, 15, 370));      
+
+
+
+
+
+
 }
 
 
@@ -94,7 +91,7 @@ void draw() {
   background(20);
   infoPanel();
   edgar.display();
-// Adding in levels with a countdown
+
   timeLeft = timeLeft -1.0/60;
   if (timeLeft <= 0) {
     level = level +1;
@@ -102,25 +99,22 @@ void draw() {
     timeLeft = 20;
     spiders.clear();
     int spiderCount = (level + 1) / 2;
-    
+
     for (int i = 0; i < spiderCount; i++) {
-    spiders.add(new Spider());
-     }
-//Code for shield increasing levels and health
-  int shieldCount = (level + 1) / 5;
-    
-      for (int i = 0; i < shieldCount; i++) {
-    shields.add(new Shield());
-  }
-  
+      spiders.add(new Spider());
+    }
   } else if (edgar.health <= 0) {
     gameOverScreen();
     return;
   }
-  
+
+
+
 
   //edgar.x = constrain(edgar.x, edgar.w, width  - edgar.w);
   // edgar.y = constrain(edgar.y, edgar.w, height - edgar.w);
+
+
 
 
   for (int i = 0; i < walls.size(); i++) {
@@ -136,6 +130,7 @@ void draw() {
       coins.add(new Coin());
     }
   }
+
 
   for (int i = ghosts.size() - 1; i >= 0; i--) {
     Ghost g = ghosts.get(i);
@@ -156,7 +151,7 @@ void draw() {
       ghosts.add(new Ghost());
     }
   }
-   
+
   for (int i = spiders.size() - 1; i >= 0; i--) {
     Spider g = spiders.get(i);
     g.display();
@@ -167,69 +162,58 @@ void draw() {
       spiders.remove(i);
       spiders.add(new Spider());
       continue;
-}
-  if (edgar.intersect(g)) {
-    edgar.health -= 50;
-    score -= 50;
-    spiders.remove(i);
-    spiders.add(new Spider());
     }
-  }
-//Adeline - spear
- for (int i = spears.size() - 1; i >= 0; i--) {
-  Spear s = spears.get(i);
-  s.move();
-  s.display();
-
-  
-  if (s.reachedTop()) {
-    spears.remove(i);
-    continue;
-  }
-
-  
-  for (int g = ghosts.size() - 1; g >= 0; g--) {
-    Ghost ghost = ghosts.get(g);
-
-    if (dist(s.x, s.y, ghost.x, ghost.y) < ghost.diam / 2) {
-      score += 10;
-      ghosts.remove(g);
-      ghosts.add(new Ghost());
-      spears.remove(i);
-      continue;   
-    }
-  }
-//Bailey
-  for (int sp = spiders.size() - 1; sp >= 0; sp--) {
-    Spider spider = spiders.get(sp);
-
-    if (dist(s.x, s.y, spider.x, spider.y) < spider.diam / 2) {
-
-      score += 50;
-      spiders.remove(sp);
+    if (edgar.intersect(g)) {
+      edgar.health -= 50;
+      score -= 50;
+      spiders.remove(i);
       spiders.add(new Spider());
+    }
+  }
+  for (int i = spears.size() - 1; i >= 0; i--) {
+    Spear s = spears.get(i);
+    s.move();
+    s.display();
 
+
+    if (s.reachedTop()) {
       spears.remove(i);
-      continue;   
+      continue;
+    }
+
+
+    for (int g = ghosts.size() - 1; g >= 0; g--) {
+      Ghost ghost = ghosts.get(g);
+
+      if (dist(s.x, s.y, ghost.x, ghost.y) < ghost.diam / 2) {
+        score += 10;
+        ghosts.remove(g);
+        ghosts.add(new Ghost());
+        spears.remove(i);
+        continue;
+      }
+    }
+
+    for (int sp = spiders.size() - 1; sp >= 0; sp--) {
+      Spider spider = spiders.get(sp);
+
+      if (dist(s.x, s.y, spider.x, spider.y) < spider.diam / 2) {
+
+        score += 50;
+        spiders.remove(sp);
+        spiders.add(new Spider());
+
+        spears.remove(i);
+        continue;
       }
     }
   }
- for (int i = shields.size() - 1; i >= 0; i--) {
-  Shield h = shields.get(i);
-  h.display();
-  
-
-  if (edgar.intersect(h)) {
-    edgar.health += 25;
-    shields.remove(i);
-    shields.add(new Shield());
-    }
-  }
 }
 
 
+
 void keyPressed() {
-  
+
   // Saves previous player position before moving,
   //and will restore values if player hits the wall
   float prevX = edgar.x;
@@ -299,12 +283,10 @@ void mousePressed() {
     if (btnBack.clicked()) {
       instructions = false;
       return;
-      
     }
   }
   if (play) {
     spears.add(new Spear((int)edgar.x, (int)edgar.y));
-    wsound.play();
   }
 }
 
