@@ -3,13 +3,13 @@
 ### In this game you will wander through dark corridors collecting spooky coins. The goal is to grab every coin and find the exit, but the maze is filled with creepy obstacles that can appear out of nowhere. It’s easy to play but hard to shake the feeling that something might be following you.
 
 ## Members
-* Adeline Wright-Audio & QA/polish/Art & Design : Sound Logic, Graphics for character and End screen, code for spear class, player class, and game.
-* Bailey McKeithen-Collison detection and Object Classes: Coin,Ghost,Player, and Spider class code and graphics.
+* Adeline Wright-Audio & QA/polish/Art & Design : Sound Logic, Graphics for character and End screen, code for spear class, and game.
+* Bailey McKeithen-Collison detection and Object Classes: Coin,Ghost,Player, and Spider class code and graphics. Also created group UML.
 * Kirubashinilakshana Senthilnathan-Lead Developer/Art & design: code for game, graphics for screens (start, end, main screen, etc), logic for buttons 
 
 ![Maze](https://github.com/codinghasini/GameDev-Group/blob/main/Maze%20Mockup-1.png.png)
 
-[timeline](https://github.com/codinghasini/GameDev-Group/blob/main/Project%20Timeline.docx)
+[Timeline](https://github.com/codinghasini/GameDev-Group/blob/main/Project%20Timeline.docx)
 
-[Chart](https://github.com/codinghasini/GameDev-Group/blob/main/Diagram.drawio.png)
+[UML](https://github.com/codinghasini/GameDev-Group/blob/main/Diagram.drawio.png)
 
