@@ -4,7 +4,7 @@
 
 ## Members
 * Adeline Wright-Audio & QA/polish/Art & Design : Sound Logic, Graphics for character, code for game
-* Bailey McKeithen-Level & Mechanics Developer/Core sytems : Graphics for coin and obstacles, code for game
+* Bailey McKeithen-Collison detection and Object Classes: Coin,Ghost,Player, and Spider class code and graphics.
 * Kirubashinilakshana Senthilnathan-Lead Developer/Art & design: code for game, graphics for screens (start, end, main screen, etc), logic for buttons 
 
 ![Maze](https://github.com/codinghasini/GameDev-Group/blob/main/Maze%20Mockup-1.png.png)
