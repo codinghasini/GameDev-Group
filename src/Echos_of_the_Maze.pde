@@ -10,6 +10,8 @@ ArrayList<Ghost> ghosts;
 ArrayList<Coin> coins;
 ArrayList<Wall> walls;
 ArrayList<Spear> spears;
+ArrayList<Spider> spiders;
+Timer spidertimer;
 PImage start;
 PImage menu;
 PImage end;
@@ -33,6 +35,8 @@ void setup() {
   score = 0;
   edgar = new Player();
 
+  spidertimer = new Timer(5000);
+  spidertimer.start();
 
 
   //Kirubashinilakshana Bailey
@@ -44,7 +48,7 @@ void setup() {
   coins = new ArrayList<Coin>();
   walls = new ArrayList<Wall>();
   spears= new ArrayList <Spear>();
-
+  spiders= new ArrayList <Spider>();
 
   for (int i = 0; i < 5; i++) {
     coins.add(new Coin());
@@ -52,6 +56,8 @@ void setup() {
   for (int i = 0; i < 3; i++) {
     ghosts.add(new Ghost());
   }
+ 
+
 
   walls.add(new Wall(390, 50, 600, 20)); // top horizontal wall
   walls.add(new Wall(100, 350, 20, 400)); // left vertical wall
@@ -84,18 +90,24 @@ void draw() {
   if (timeLeft <= 0) {
     level = level +1;
     score += 100;
-    timeLeft = 10;
-  } else if (edgar.health <= 0) {
+    timeLeft = 20;
+    spiders.clear();
+    int spiderCount = (level + 1) / 2;
+    
+      for (int i = 0; i < spiderCount; i++) {
+    spiders.add(new Spider());
+  }
+  }
+      else if (edgar.health <= 0) {
     gameOverScreen();
     return;
   }
+  
 
 
 
   //edgar.x = constrain(edgar.x, edgar.w, width  - edgar.w);
   // edgar.y = constrain(edgar.y, edgar.w, height - edgar.w);
-
-
 
 
 
@@ -115,11 +127,6 @@ void draw() {
   }
 
 
-  // can edgar move into next location or is it occupied by a wall
-  // edgar intersection with coins is off
-  // no ghosts
-
-
   for (int i = ghosts.size() - 1; i >= 0; i--) {
     Ghost g = ghosts.get(i);
     g.display();
@@ -135,9 +142,65 @@ void draw() {
     if (edgar.intersect(g)) {
       edgar.health -= 10;
       ghostsHit++;
-      println("Hit! Health:", edgar.health);
       ghosts.remove(i);
       ghosts.add(new Ghost());
+    }
+  }
+   
+    for (int i = spiders.size() - 1; i >= 0; i--) {
+  Spider g = spiders.get(i);
+  g.display();
+  g.move();
+
+
+    if (g.y > height + g.diam/2) {
+  spiders.remove(i);
+  spiders.add(new Spider());
+    continue;
+}
+  if (edgar.intersect(g)) {
+    edgar.health -= 50;
+    score -= 50;
+    spiders.remove(i);
+    spiders.add(new Spider());
+    }
+  }
+ for (int i = spears.size() - 1; i >= 0; i--) {
+  Spear s = spears.get(i);
+  s.move();
+  s.display();
+
+  
+  if (s.reachedTop()) {
+    spears.remove(i);
+    continue;
+  }
+
+  
+  for (int g = ghosts.size() - 1; g >= 0; g--) {
+    Ghost ghost = ghosts.get(g);
+
+    if (dist(s.x, s.y, ghost.x, ghost.y) < ghost.diam / 2) {
+      score += 10;
+      ghosts.remove(g);
+      ghosts.add(new Ghost());
+      spears.remove(i);
+      continue;   
+    }
+  }
+
+  for (int sp = spiders.size() - 1; sp >= 0; sp--) {
+    Spider spider = spiders.get(sp);
+
+    if (dist(s.x, s.y, spider.x, spider.y) < spider.diam / 2) {
+
+      score += 50;
+      spiders.remove(sp);
+      spiders.add(new Spider());
+
+      spears.remove(i);
+      continue;   
+      }
     }
   }
 }
@@ -145,6 +208,7 @@ void draw() {
 
 
 void keyPressed() {
+  
   // Saves previous player position before moving,
   //and will restore values if player hits the wall
   float prevX = edgar.x;
@@ -217,6 +281,10 @@ void mousePressed() {
       
     }
   }
+  if (play) {
+    spears.add(new Spear((int)edgar.x, (int)edgar.y));
+}
+
 }
 
 void instructionScreen() {
