@@ -53,4 +53,12 @@ class Player {
       return false;
     }
   }
+  boolean intersect(Spider g) {
+    float d= dist(x, y, g.x, g.y);
+    if (d<50) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
