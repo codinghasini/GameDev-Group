@@ -21,8 +21,9 @@ boolean play;
 boolean instructions;
 int level = 1;
 float timeLeft = 10;
-
-
+//Sound for when spear shoots
+SoundFile wsound;
+import processing.sound.*;
 
 
 
@@ -38,6 +39,8 @@ void setup() {
   level=1;
   score = 0;
   edgar = new Player();
+//Adeline
+wsound = new SoundFile(this, "woosh.mp3");
 //Bailey
   spidertimer = new Timer(5000);
   spidertimer.start();
@@ -288,6 +291,7 @@ void mousePressed() {
   }
   if (play) {
     spears.add(new Spear((int)edgar.x, (int)edgar.y));
+wsound.play();
 }
 
 }
