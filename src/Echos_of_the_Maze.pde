@@ -59,19 +59,55 @@ void setup() {
 
   walls.add(new Wall(600, 40, 1000, 15)); // top horizontal wall
   walls.add(new Wall(105, 320, 15, 574)); // left vertical wall
-  walls.add(new Wall(1100, 373, 15, 470)); // right vertical wall
+  walls.add(new Wall(1100, 268, 15, 470)); // right vertical wall
   walls.add(new Wall(600, 600, 1000, 15)); // bottom horizontal wall
-  
-  
-
-// Vertical wall dropping down from that top wall (near left)
-walls.add(new Wall(260, 315, 15, 370));      
 
 
 
+  //Vertical wall dropping down from that top wall (near left)
+  walls.add(new Wall(403, 145, 400, 15)); // 2nd top horizontal wall
 
+  walls.add(new Wall(150, 300, 106, 15));
 
+  walls.add(new Wall(596, 95, 15, 100)); // 2nd right vertical wall
 
+  walls.add(new Wall(596, 270, 15, 70));
+
+  walls.add(new Wall(888, 270, 15, 70));
+
+  walls.add(new Wall(895, 500, 15, 70));
+
+  walls.add(new Wall(810, 400, 15, 150));
+
+  walls.add(new Wall(700, 500, 15, 60));
+
+  walls.add(new Wall(755, 475, 120, 15));
+
+  walls.add(new Wall(888, 190, 15, 70));
+
+  walls.add(new Wall(1000, 190, 15, 300));
+
+  walls.add(new Wall(500, 415, 15, 65));
+
+  walls.add(new Wall(388, 455, 370, 15));
+
+  walls.add(new Wall(550, 530, 700, 15));
+
+  walls.add(new Wall(795, 150, 200, 15));
+
+  walls.add(new Wall(210, 300, 15, 300));
+
+  walls.add(new Wall(300, 300, 15, 150));
+
+  walls.add(new Wall(595, 230, 600, 15));
+
+  walls.add(new Wall(960, 400, 290, 15));
+
+  walls.add(new Wall(600, 300, 200, 15));
+
+  walls.add(new Wall(700, 345, 15, 105));
+
+  walls.add(new Wall(595, 390, 205, 15));
 }
 
 
